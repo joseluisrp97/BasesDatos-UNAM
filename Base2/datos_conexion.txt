@@ -1,0 +1,7 @@
+Proyecto Final
+Raya Pérez José Luis  Muñoz Sandoval Alan Sebastián Cruz Martinez Giovanny
+Base 2 
+
+Server: suleiman.db.elephantsql.com
+User & Default database:  vnbyrwex
+Password:  BxmkOw6qsLM2l3dLlp2JUc4PBu-03qlu

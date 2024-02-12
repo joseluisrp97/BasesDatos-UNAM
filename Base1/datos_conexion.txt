@@ -1,0 +1,10 @@
+Proyecto Final
+Raya Pérez José Luis  Muñoz Sandoval Alan Sebastián Cruz Martinez Giovanny
+Base 1 
+
+Datos de Conexión
+Server	berry.db.elephantsql.com (berry-01)
+Region	amazon-web-services::us-east-1
+User & Default database:	abznchyk
+Password	LlaPXe0AgMGC286iExjdw4CWr3SFeeCb 
+URL	postgres: postgres://abznchyk:LlaPXe0AgMGC286iExjdw4CWr3SFeeCb@berry.db.elephantsql.com/abznchyk

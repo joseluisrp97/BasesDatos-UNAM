@@ -1,0 +1,10 @@
+Proyecto Final
+Raya Pérez José Luis  Muñoz Sandoval Alan Sebastián Cruz Martinez Giovanny
+Base 3 
+
+Datos de Conexión
+Server	bubble.db.elephantsql.com (bubble-01)
+Region	amazon-web-services::us-west-1
+User & Default database:	lziwyftc
+Password	R0aIPUweLa1lzjmf2Ex-tIrIX7y-vS7u 
+URL	postgres: postgres://lziwyftc:***@bubble.db.elephantsql.com/lziwyftc 

@@ -1,0 +1,78 @@
+CREATE TABLE Cliente
+(
+  IDcliente SERIAL PRIMARY KEY,
+  Nombre VARCHAR(50) NOT NULL,
+  Apellido VARCHAR(50) NOT NULL,
+  Telefono VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE Empleado
+(
+  IDempleado SERIAL PRIMARY KEY,
+  Nombre VARCHAR(50) NOT NULL,
+  Apellido VARCHAR(50) NOT NULL,
+  Telefono VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE Comic
+(
+  IDcomic SERIAL PRIMARY KEY,
+  Personaje VARCHAR(50) NOT NULL,
+  Numero INT NOT NULL,
+  Autor VARCHAR(50) NOT NULL,
+  Año INT NOT NULL,
+  Cantidad INT NOT NULL,
+  Precio DECIMAL NOT NULL
+);
+
+CREATE TABLE Compra
+(
+  IDcompra SERIAL PRIMARY KEY,
+  Fecha DATE NOT NULL,
+  Total DECIMAL NOT NULL,
+  IDcliente INT,
+  IDempleado INT,
+  FOREIGN KEY (IDcliente) REFERENCES Cliente(IDcliente) ON DELETE SET NULL,
+  FOREIGN KEY (IDempleado) REFERENCES Empleado(IDempleado) ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+CREATE TABLE Incluye
+(
+  IDcompra INT NOT NULL,
+  IDcomic INT NOT NULL,
+  PRIMARY KEY (IDcompra, IDcomic),
+  FOREIGN KEY (IDcompra) REFERENCES Compra(IDcompra)  ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (IDcomic) REFERENCES Comic(IDcomic) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Check
+ALTER TABLE Comic
+ADD CONSTRAINT check_cantidad_nonnegative
+CHECK (Cantidad >= 0);
+
+ALTER TABLE Compra
+ADD CONSTRAINT check_total_nonnegative
+CHECK (Total >= 0);
+
+ALTER TABLE Comic
+ADD CONSTRAINT check_año_valido
+CHECK (Año >= 1900 AND Año <= EXTRACT(YEAR FROM CURRENT_DATE));
+
+-- Dominios
+CREATE DOMAIN precio_comic AS DECIMAL
+CHECK (VALUE >= 0 AND VALUE <= 500);
+
+CREATE DOMAIN telefono_standard AS VARCHAR(15)
+CHECK (VALUE ~ '^[0-9]{10}$');
+
+CREATE DOMAIN año_comic AS INT
+CHECK (VALUE >= 1900 AND VALUE <= EXTRACT(YEAR FROM CURRENT_DATE));
+
+-- Tuplas
+ALTER TABLE Compra
+ADD CONSTRAINT check_fecha_total_compra
+CHECK (NOT (Total > 500 AND EXTRACT(YEAR FROM Fecha) < 2000));
+
+ALTER TABLE Comic
+ADD CONSTRAINT check_precio_cantidad
+CHECK (NOT (Precio = 0 AND Cantidad = 0));
